@@ -214,7 +214,7 @@ create function ufn_CalculateStudentGradeInCourse (@StudentId int, @CourseId int
 returns char
 AS
 begin
-	declare @Grade AS int;
+	declare @Grade AS float;
 
 	select @Grade = AVG(Grade) from Grades g
 	join Assignments a 
