@@ -243,7 +243,7 @@ returns float
 As
 begin
 	declare @GPA As float
-	select @GPA = sum(e.CourseGPA)/4
+	select @GPA = sum(e.CourseGPA)/COUNT(e.CourseGPA)
 	from
 	(select 
 	case 
