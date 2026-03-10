@@ -1,0 +1,7 @@
+﻿/Assignments/Assignment_3/UniversitySystem/University.API/appsettings.json
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+.vs/
