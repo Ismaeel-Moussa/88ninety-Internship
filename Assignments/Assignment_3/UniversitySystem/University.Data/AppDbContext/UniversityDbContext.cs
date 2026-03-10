@@ -9,7 +9,7 @@ namespace University.Data.AppDbContext
 {
     public class UniversityDbContext(DbContextOptions<UniversityDbContext> options) : DbContext(options)
     {
-        DbSet<Student> students;
+        DbSet<Student> Students { get; set; };
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
