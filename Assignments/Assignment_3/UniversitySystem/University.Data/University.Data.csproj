@@ -14,9 +14,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Autofac\" />
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>
