@@ -31,7 +31,7 @@ namespace University.Data.Repository
             _context.Students.Update(student);
         }
 
-        public void Detete(Student student)
+        public void Delete(Student student)
         {
             ArgumentNullException.ThrowIfNull(student);
             _context.Students.Remove(student);
@@ -50,7 +50,7 @@ namespace University.Data.Repository
         Student GetById(int id);
         void Add(Student student);
         void Update(Student student);
-        void Detete(Student student);
+        void Delete(Student student);
         void SaveChanges();
     }
 }

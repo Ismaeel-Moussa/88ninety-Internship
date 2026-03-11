@@ -79,14 +79,14 @@ namespace University.Core.Services
           
         }
 
-        public void Detete(int id)
+        public void Delete(int id)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(id);
 
             var student = _studentRepository.GetById(id)
                     ?? throw new NotFoundException("Student not found");
 
-            _studentRepository.Detete(student);
+            _studentRepository.Delete(student);
             _studentRepository.SaveChanges();
         }
 
@@ -98,6 +98,6 @@ namespace University.Core.Services
         StudentDTO GetById(int id);
         void Create(AddStudentForm form);
         void Update(int id, UpdateStudentForm form);
-        void Detete(int id);
+        void Delete(int id);
     }
 }
