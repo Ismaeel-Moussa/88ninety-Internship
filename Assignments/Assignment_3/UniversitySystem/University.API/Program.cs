@@ -16,14 +16,8 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-// Exception Filter
-//builder.Services.AddControllers(options =>
-//{
-//    options.Filters.Add<University.API.Filters.ApiExceptionFilter>();
-//});
 
 builder.Services.AddControllers();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

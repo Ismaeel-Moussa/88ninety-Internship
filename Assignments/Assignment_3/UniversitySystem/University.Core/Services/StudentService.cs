@@ -1,4 +1,5 @@
-﻿using University.Core.DTOs;
+﻿using Microsoft.Extensions.Logging;
+using University.Core.DTOs;
 using University.Core.Exceptions;
 using University.Core.Forms;
 using University.Core.Validations;
@@ -7,9 +8,10 @@ using University.Data.Repository;
 
 namespace University.Core.Services
 {
-    public class StudentService(IStudentRepository studentRepository) : IStudentService
+    public class StudentService(IStudentRepository studentRepository, ILogger<StudentService> logger) : IStudentService
     {
         private readonly IStudentRepository _studentRepository = studentRepository;
+        private readonly ILogger<StudentService> _logger = logger;
 
         public List<StudentDTO> GetAll()
         {
@@ -56,7 +58,7 @@ namespace University.Core.Services
 
             _studentRepository.Add(student);
             _studentRepository.SaveChanges();
-
+            _logger.LogInformation("Student created");
 
         }
 
@@ -76,7 +78,9 @@ namespace University.Core.Services
 
             _studentRepository.Update(student);
             _studentRepository.SaveChanges();
-          
+            _logger.LogInformation("Student with id {StudentId} updated", student.Id);
+
+
         }
 
         public void Delete(int id)
@@ -88,6 +92,9 @@ namespace University.Core.Services
 
             _studentRepository.Delete(student);
             _studentRepository.SaveChanges();
+            _logger.LogInformation("Student with id {StudentId} deleted", student.Id);
+
+
         }
 
     }
