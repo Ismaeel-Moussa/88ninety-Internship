@@ -1,0 +1,57 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ismail\\Documents\\Internship 88ninety\\Assignments\\Assignment_2\\University Course Management System\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1C1CDB45-A384-F644-93D1-9473B2D6E985}|University Course Management System\\University Course Management System.csproj|c:\\users\\ismail\\documents\\internship 88ninety\\assignments\\assignment_2\\university course management system\\university course management system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C1CDB45-A384-F644-93D1-9473B2D6E985}|University Course Management System\\University Course Management System.csproj|solutionrelative:university course management system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2064750209:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ismail\\Documents\\Internship 88ninety\\Assignments\\Assignment_2\\University Course Management System\\University Course Management System\\Program.cs",
+              "RelativeDocumentMoniker": "University Course Management System\\Program.cs",
+              "ToolTip": "C:\\Users\\ismail\\Documents\\Internship 88ninety\\Assignments\\Assignment_2\\University Course Management System\\University Course Management System\\Program.cs",
+              "RelativeToolTip": "University Course Management System\\Program.cs",
+              "ViewState": "AgIAACcCAAAAAAAAAAAIwJcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-06T05:41:11.97Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
