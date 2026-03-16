@@ -9,16 +9,17 @@ namespace University.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentsController(IStudentService studentService) : ControllerBase
+    public class StudentsController(IStudentService studentService, ILogger<StudentsController> logger) : ControllerBase
     {
         private readonly IStudentService _studentService = studentService;
-
+        private readonly ILogger<StudentsController> _logger = logger;
 
         [HttpGet]
         [ProducesResponseType(typeof(List<StudentDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public List<StudentDTO> GetAll()
         {       
+            _logger.LogInformation("Getting all students");
             return _studentService.GetAll();
         }
 
@@ -29,6 +30,7 @@ namespace University.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public StudentDTO GetById(int id)
         {
+            _logger.LogInformation("Getting student with id {StudentId}", id);
             return _studentService.GetById(id);
         }
 
@@ -39,6 +41,7 @@ namespace University.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public void Create([FromBody] AddStudentForm form)
         {
+            _logger.LogInformation("Creating a new student with name {StudentName}", form.Name);
             _studentService.Create(form);
         }
 
@@ -49,6 +52,7 @@ namespace University.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public void Update(int id, [FromBody] UpdateStudentForm form)
         {
+            _logger.LogInformation("Updating student with id {StudentId}", id);
             _studentService.Update(id, form);
         }
 
@@ -58,6 +62,7 @@ namespace University.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public void Delete(int id)
         {
+            _logger.LogInformation("Deleting student with id {StudentId}", id);
             _studentService.Delete(id);
         }
     }
