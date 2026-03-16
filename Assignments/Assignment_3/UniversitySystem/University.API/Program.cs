@@ -6,6 +6,7 @@ using University.API.Autofac;
 using University.API.Filters;
 using University.Data.AppDbContext;
 using University.Data.Autofac;
+using AutoWrapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,13 +41,13 @@ builder.Host.ConfigureContainer<ContainerBuilder>(container =>
 
 var app = builder.Build();
 
+app.UseApiResponseAndExceptionWrapper();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 app.UseAuthorization(); 
 app.MapControllers();

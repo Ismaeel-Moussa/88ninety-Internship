@@ -17,10 +17,9 @@ namespace University.API.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(List<StudentDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ApiResponse GetAll()
-        {
-            var dto = _studentService.GetAll();
-            return new ApiResponse(dto);
+        public List<StudentDTO> GetAll()
+        {       
+            return _studentService.GetAll();
         }
 
 
@@ -28,10 +27,9 @@ namespace University.API.Controllers
         [ProducesResponseType(typeof(StudentDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ApiResponse GetById(int id)
+        public StudentDTO GetById(int id)
         {
-            var dto = _studentService.GetById(id);
-            return new ApiResponse(dto);
+            return _studentService.GetById(id);
         }
 
 
@@ -39,11 +37,9 @@ namespace University.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ApiResponse Create([FromBody] AddStudentForm form)
+        public void Create([FromBody] AddStudentForm form)
         {
             _studentService.Create(form);
-            return new ApiResponse(HttpStatusCode.Created);
-
         }
 
         [HttpPut("{id}")]
@@ -51,20 +47,18 @@ namespace University.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ApiResponse Update(int id, [FromBody] UpdateStudentForm form)
+        public void Update(int id, [FromBody] UpdateStudentForm form)
         {
             _studentService.Update(id, form);
-            return new ApiResponse(HttpStatusCode.OK);
         }
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ApiResponse Delete(int id)
+        public void Delete(int id)
         {
             _studentService.Delete(id);
-            return new ApiResponse(HttpStatusCode.OK);
         }
     }
 }
