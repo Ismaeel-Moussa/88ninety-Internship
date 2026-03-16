@@ -57,6 +57,8 @@ var app = builder.Build();
 
 app.UseApiResponseAndExceptionWrapper();
 
+app.UseCors(reactOriginPolicy);
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
