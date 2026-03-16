@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import './StudentsList.scss';
-import useGetStudents from '../../hooks/useGetStudents';
+import useGetStudents from '../../hooks/student/useGetStudents';
 import type { Student } from '../../types/Student';
 
 const StudentsList = () => {
