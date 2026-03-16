@@ -37,6 +37,11 @@ namespace University.Data.Repository
             _context.Students.Remove(student);
         }
 
+        public Boolean IsEmailExists(string email)
+        {
+            return _context.Students.Any(s => s.Email == email);
+        }
+
         public void SaveChanges()
         {
             _context.SaveChanges();
@@ -51,6 +56,7 @@ namespace University.Data.Repository
         void Add(Student student);
         void Update(Student student);
         void Delete(Student student);
+        Boolean IsEmailExists(string email);
         void SaveChanges();
     }
 }

@@ -64,6 +64,11 @@ namespace University.Core.Services
                 throw new BusinessException(validation.Errors);
             }
             
+            if (_studentRepository.IsEmailExists(form.Email))
+            {
+                _logger.LogWarning("Email {Email} already exists", form.Email);
+                throw new BusinessException("Email already exists");
+            }
 
             var student = new Student()
             {
@@ -103,6 +108,12 @@ namespace University.Core.Services
             {
                 _logger.LogError("Student with id {StudentId} not found for update", id);
                 throw new NotFoundException("Student not found");
+            }
+
+            if (student.Email != form.Email && _studentRepository.IsEmailExists(form.Email))
+            {
+                _logger.LogWarning("Email {Email} already exists", form.Email);
+                throw new BusinessException("Email already exists");
             }
 
             student.Name = form.Name;
