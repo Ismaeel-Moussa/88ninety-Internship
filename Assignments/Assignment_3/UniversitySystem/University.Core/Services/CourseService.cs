@@ -28,10 +28,18 @@ namespace University.Core.Services
 
         public CourseDTO GetById(int id)
         {
-            ArgumentOutOfRangeException.ThrowIfNegative(id);
+            if (id < 0)
+            {
+                _logger.LogError("Invalid id {CourseId} provided", id);
+                throw new ArgumentOutOfRangeException(nameof(id), "Id must be non-negative");
+            }
 
-            var Course = _CourseRepository.GetById(id)
-                ?? throw new NotFoundException("Course not found");
+            var Course = _CourseRepository.GetById(id);
+            if (Course == null)
+            {
+                _logger.LogError("Course with id {CourseId} not found", id);
+                throw new NotFoundException("Course not found");
+            }
 
             return new CourseDTO()
             {
@@ -43,11 +51,18 @@ namespace University.Core.Services
 
         public void Create(AddCourseForm form)
         {
-            ArgumentNullException.ThrowIfNull(form);
+            if (form == null)
+            {
+                _logger.LogError("Form cannot be null");
+                throw new ArgumentNullException(nameof(form), "Form cannot be null");
+            }
 
             var validation = FormValidator.Validate(form);
-            if (!validation.IsValid)            
+            if (!validation.IsValid)
+            {
+                _logger.LogWarning("Form validation failed with errors: {Errors}", validation.Errors);
                 throw new BusinessException(validation.Errors);
+            }
             
 
             var Course = new Course()
@@ -64,15 +79,30 @@ namespace University.Core.Services
 
         public void Update(int id, UpdateCourseForm form)
         {
-            ArgumentNullException.ThrowIfNull(form);
-            ArgumentOutOfRangeException.ThrowIfNegative(id);
+            if (form == null)
+            {
+                _logger.LogError("Form cannot be null");
+                throw new ArgumentNullException(nameof(form), "Form cannot be null");
+            }
+            if (id < 0)
+            {
+                _logger.LogError("Invalid id {CourseId} provided", id);
+                throw new ArgumentOutOfRangeException(nameof(id), "Id must be non-negative");
+            }
 
             var validation = FormValidator.Validate(form);
             if (!validation.IsValid)
+            {
+                _logger.LogWarning("Form validation failed with errors: {Errors}", validation.Errors);
                 throw new BusinessException(validation.Errors);
+            }
 
-            var Course = _CourseRepository.GetById(id)
-                    ?? throw new NotFoundException("Course not found");
+            var Course = _CourseRepository.GetById(id);
+            if (Course == null)
+            {
+                _logger.LogError("Course with id {CourseId} not found", id);
+                    throw new NotFoundException("Course not found");
+            }
 
             Course.Name = form.Name;
             Course.Credit = form.Credit;
