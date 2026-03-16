@@ -2,8 +2,11 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using University.API.Autofac;
+using University.API.Filters;
 using University.Data.AppDbContext;
 using University.Data.Autofac;
+using AutoWrapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +19,10 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ApiExceptionFilter>();
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -31,6 +36,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(container =>
 {
     container.RegisterModule<RepositoriesModule>();
     container.RegisterModule<ServicesModule>();
+    container.RegisterModule<ControllersModule>();
 });
 
 // Add CORS services
@@ -49,6 +55,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+app.UseApiResponseAndExceptionWrapper();
 
 if (app.Environment.IsDevelopment())
 {
@@ -56,7 +63,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(reactOriginPolicy);
 app.UseHttpsRedirection();
 app.UseAuthorization(); 
 app.MapControllers();
