@@ -2,6 +2,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using University.API.Autofac;
 using University.API.Filters;
 using University.Data.AppDbContext;
 using University.Data.Autofac;
@@ -34,6 +35,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(container =>
 {
     container.RegisterModule<RepositoriesModule>();
     container.RegisterModule<ServicesModule>();
+    container.RegisterModule<ControllersModule>();
 });
 
 var app = builder.Build();
