@@ -6,9 +6,9 @@ const Navbar = () => {
         <nav className="nav">
             <div className="nav-logo-container">
                 <img
+                    className="nav-logo"
                     src="../../assets/altinbas-logo.png"
                     alt="logo"
-                    className="nav-logo"
                 />
                 <span className="nav-brand">University System</span>
             </div>
