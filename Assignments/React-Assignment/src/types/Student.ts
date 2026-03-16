@@ -5,10 +5,6 @@ export interface Student {
 }
 
 export interface GetStudentsResponse {
-    version: string | null;
-    statusCode: string | number;
     message: string | null;
-    isError: boolean | null;
-    responseException: string | null;
     result: Student[];
 }
