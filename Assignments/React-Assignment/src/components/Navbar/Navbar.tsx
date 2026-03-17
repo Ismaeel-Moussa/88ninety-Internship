@@ -1,15 +1,12 @@
 import { NavLink } from 'react-router-dom';
+import logo from '../../assets/altinbas-logo.png';
 import './Navbar.scss';
 
 const Navbar = () => {
     return (
         <nav className="nav">
             <div className="nav-logo-container">
-                <img
-                    className="nav-logo"
-                    src="../../assets/altinbas-logo.png"
-                    alt="logo"
-                />
+                <img className="nav-logo" src={logo} alt="logo" />
                 <span className="nav-brand">University System</span>
             </div>
             <div className="nav-links">
