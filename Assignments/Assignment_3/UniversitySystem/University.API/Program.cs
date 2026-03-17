@@ -39,23 +39,21 @@ builder.Host.ConfigureContainer<ContainerBuilder>(container =>
     container.RegisterModule<ControllersModule>();
 });
 
-// Add CORS services
-var reactOriginPolicy = "ReactOriginPolicy";
+// Add cors
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: reactOriginPolicy,
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:5173")
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
-        });
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
 });
 
 
 var app = builder.Build();
 
-app.UseCors(reactOriginPolicy);
+app.UseCors();
 
 if (app.Environment.IsDevelopment())
 {
