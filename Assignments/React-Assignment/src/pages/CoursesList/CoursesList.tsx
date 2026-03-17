@@ -19,7 +19,6 @@ const CoursesList = () => {
                             </span>
                         </Link>
                         <div className="course-list-actions">
-                            s
                             <button
                                 type="button"
                                 className="course-list-edit-btn"

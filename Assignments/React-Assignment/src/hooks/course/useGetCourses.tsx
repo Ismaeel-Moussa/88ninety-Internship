@@ -4,7 +4,7 @@ import type { Course, GetCoursesResponse } from '../../types/Course';
 
 const fetchCourses = async (): Promise<Course[]> => {
     const result = await axios.get<GetCoursesResponse>(
-        'https://localhost:7078/api/courses',
+        'http://localhost:5212/api/courses',
     );
     console.log(result.data);
     return result.data.result;

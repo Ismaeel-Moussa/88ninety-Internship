@@ -6,7 +6,7 @@ using University.API.Autofac;
 using University.API.Filters;
 using University.Data.AppDbContext;
 using University.Data.Autofac;
-using AutoWrapper;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,8 +54,6 @@ builder.Services.AddCors(options =>
 
 
 var app = builder.Build();
-
-app.UseApiResponseAndExceptionWrapper();
 
 app.UseCors(reactOriginPolicy);
 

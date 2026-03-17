@@ -4,7 +4,7 @@ import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 
 const fetchStudents = async (): Promise<Student[]> => {
     const result = await axios.get<GetStudentsResponse>(
-        'https://localhost:7078/api/students',
+        'http://localhost:5212/api/students',
     );
     console.log(result.data);
     return result.data.result;

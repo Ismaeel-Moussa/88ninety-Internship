@@ -17,10 +17,10 @@ namespace University.API.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(List<StudentDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public List<StudentDTO> GetAll()
+        public ApiResponse GetAll()
         {       
             _logger.LogInformation("Getting all students");
-            return _studentService.GetAll();
+            return new ApiResponse(_studentService.GetAll());
         }
 
 
@@ -28,10 +28,10 @@ namespace University.API.Controllers
         [ProducesResponseType(typeof(StudentDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public StudentDTO GetById(int id)
+        public ApiResponse GetById(int id)
         {
             _logger.LogInformation("Getting student with id {StudentId}", id);
-            return _studentService.GetById(id);
+            return new ApiResponse( _studentService.GetById(id));
         }
 
 
@@ -39,10 +39,11 @@ namespace University.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public void Create([FromBody] AddStudentForm form)
+        public ApiResponse Create([FromBody] AddStudentForm form)
         {
             _logger.LogInformation("Creating a new student with name {StudentName}", form.Name);
             _studentService.Create(form);
+            return new ApiResponse("Student created successfully");
         }
 
         [HttpPut("{id}")]
@@ -50,20 +51,22 @@ namespace University.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public void Update(int id, [FromBody] UpdateStudentForm form)
+        public ApiResponse Update(int id, [FromBody] UpdateStudentForm form)
         {
             _logger.LogInformation("Updating student with id {StudentId}", id);
             _studentService.Update(id, form);
+            return new ApiResponse("Student updated successfully");
         }
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public void Delete(int id)
+        public ApiResponse Delete(int id)
         {
             _logger.LogInformation("Deleting student with id {StudentId}", id);
             _studentService.Delete(id);
+            return new ApiResponse("Student deleted successfully");
         }
     }
 }
