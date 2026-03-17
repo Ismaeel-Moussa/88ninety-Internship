@@ -1,6 +1,10 @@
 import { createPortal } from 'react-dom';
 import './StudentForm.scss';
+import { useContext } from 'react';
+import StudentFormModalContext from '../../contexts/StudentFormModalContext';
 const StudentForm = () => {
+    const { closeModal } = useContext(StudentFormModalContext);
+
     return createPortal(
         <div className="student-form-modal-overlay">
             <div className="student-form-modal">
@@ -10,6 +14,7 @@ const StudentForm = () => {
                         type="button"
                         className="student-form-modal-close"
                         aria-label="Close"
+                        onClick={closeModal}
                     >
                         x
                     </button>
