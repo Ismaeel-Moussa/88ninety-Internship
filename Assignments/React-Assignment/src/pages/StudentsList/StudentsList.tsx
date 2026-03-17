@@ -4,9 +4,11 @@ import useGetStudents from '../../hooks/student/useGetStudents';
 import type { Student } from '../../types/Student';
 import { useContext } from 'react';
 import StudentFormModalContext from '../../contexts/StudentFormModalContext';
+import useDeleteStudent from '../../hooks/student/useDeleteStudent';
 
 const StudentsList = () => {
     const { data: studentsData } = useGetStudents();
+    const deleteStudent = useDeleteStudent();
     const { openAddModal } = useContext(StudentFormModalContext);
     return (
         <>
@@ -35,8 +37,15 @@ const StudentsList = () => {
                                 <button
                                     type="button"
                                     className="student-list-delete-btn"
+                                    onClick={() =>
+                                        s.id != null &&
+                                        deleteStudent.mutate(s.id)
+                                    }
+                                    disabled={deleteStudent.isPending}
                                 >
-                                    Delete
+                                    {deleteStudent.isPending
+                                        ? 'Deleting...'
+                                        : 'Delete'}
                                 </button>
                             </div>
                         </li>

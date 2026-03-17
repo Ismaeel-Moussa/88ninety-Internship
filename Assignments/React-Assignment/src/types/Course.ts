@@ -12,3 +12,12 @@ export interface GetCoursesResponse {
     responseException: string | null;
     version: string | null;
 }
+
+export interface courseResponse {
+    statusCode: number | null;
+    result: Course | null;
+    isError: boolean | null;
+    message: string | null;
+    responseException: string | null;
+    version: string | null;
+}

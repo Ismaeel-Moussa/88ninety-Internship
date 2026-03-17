@@ -1,21 +1,20 @@
 import axios from 'axios';
-import type { studentResponse, Student } from '../../types/Student';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { studentResponse } from '../../types/Student';
 
-const requestData = async (student: Student): Promise<studentResponse> => {
-    const response = await axios.post(
-        'http://localhost:5212/api/students',
-        student,
+const deleteStudent = async (id: number): Promise<studentResponse> => {
+    const response = await axios.delete(
+        `http://localhost:5212/api/students/${id}`,
     );
     console.log(response.data);
     return response.data;
 };
 
-const useAddStudent = () => {
+const useDeleteStudent = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: requestData,
+        mutationFn: deleteStudent,
         onSettled: () => {
             queryClient.invalidateQueries({
                 queryKey: ['students'],
@@ -25,4 +24,4 @@ const useAddStudent = () => {
     });
 };
 
-export default useAddStudent;
+export default useDeleteStudent;
