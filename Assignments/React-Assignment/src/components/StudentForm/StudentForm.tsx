@@ -1,15 +1,24 @@
 import { createPortal } from 'react-dom';
 import './StudentForm.scss';
-import { useContext, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import StudentFormModalContext from '../../contexts/StudentFormModalContext';
 import useAddStudent from '../../hooks/student/useAddStudent';
+import useUpdateStudent from '../../hooks/student/useUpdateStudent';
 const StudentForm = () => {
-    const { closeModal } = useContext(StudentFormModalContext);
-
+    const { closeModal, mode, studentToEdit } = useContext(
+        StudentFormModalContext,
+    );
     const addStudent = useAddStudent();
-
+    const updateStudent = useUpdateStudent();
     const nameRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
+    const isEdit = mode === 'edit';
+
+    useEffect(() => {
+        if (!isEdit || !studentToEdit) return;
+        if (nameRef.current) nameRef.current.value = studentToEdit.name;
+        if (emailRef.current) emailRef.current.value = studentToEdit.email;
+    }, [isEdit, studentToEdit]);
 
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -20,15 +29,37 @@ const StudentForm = () => {
             return alert('Please fill the fields');
         }
 
-        addStudent.mutate({ name, email });
-        closeModal();
+        if (isEdit && studentToEdit?.id) {
+            updateStudent.mutate(
+                { ...studentToEdit, name, email },
+                { onSuccess: () => closeModal() },
+            );
+        } else {
+            addStudent.mutate(
+                { name, email },
+                { onSuccess: () => closeModal() },
+            );
+        }
     };
+
+    if (mode == null) return null;
+
+    const title = isEdit ? 'Edit Student' : 'Add Student';
+    const submitLabel = isEdit
+        ? updateStudent.isPending
+            ? 'Saving...'
+            : 'Save Changes'
+        : addStudent.isPending
+          ? 'Adding...'
+          : 'Add Student';
+
+    const isPending = updateStudent.isPending || addStudent.isPending;
 
     return createPortal(
         <div className="student-form-modal-overlay">
             <div className="student-form-modal">
                 <div className="student-form-modal-header">
-                    <h2 className="student-form-modal-title">Add Student</h2>
+                    <h2 className="student-form-modal-title">{title}</h2>
                     <button
                         type="button"
                         className="student-form-modal-close"
@@ -51,8 +82,12 @@ const StudentForm = () => {
                         placeholder="Email"
                         className="student-form-input"
                     />
-                    <button type="submit" className="student-form-submit">
-                        Submit
+                    <button
+                        type="submit"
+                        className="student-form-submit"
+                        disabled={isPending}
+                    >
+                        {submitLabel}
                     </button>
                 </form>
             </div>

@@ -9,7 +9,7 @@ import useDeleteStudent from '../../hooks/student/useDeleteStudent';
 const StudentsList = () => {
     const { data: studentsData } = useGetStudents();
     const deleteStudent = useDeleteStudent();
-    const { openAddModal } = useContext(StudentFormModalContext);
+    const { openAddModal, openEditModal } = useContext(StudentFormModalContext);
     return (
         <>
             <div className="students-list-page-header">
@@ -31,6 +31,10 @@ const StudentsList = () => {
                                 <button
                                     type="button"
                                     className="student-list-edit-btn"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        openEditModal(s);
+                                    }}
                                 >
                                     Edit
                                 </button>
