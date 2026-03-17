@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import StudentsList from './pages/StudentsList/StudentsList';
 import CoursesList from './pages/CoursesList/CoursesList';
 import HomePage from './pages/HomePage/HomePage';
+import StudentForm from './components/StudentForm/StudentForm';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                     <Route path="/courses" element={<CoursesList />} />
                 </Routes>
             </main>
+            <StudentForm />
         </BrowserRouter>
     );
 }
