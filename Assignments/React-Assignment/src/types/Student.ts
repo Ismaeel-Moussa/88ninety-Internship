@@ -1,5 +1,5 @@
 export interface Student {
-    id: number;
+    id?: number;
     name: string;
     email: string;
 }
@@ -7,6 +7,14 @@ export interface Student {
 export interface GetStudentsResponse {
     statusCode: number | null;
     result: Student[];
+    isError: boolean | null;
+    message: string | null;
+    responseException: string | null;
+    version: string | null;
+}
+export interface AddStudentResponse {
+    statusCode: number | null;
+    result: Student | null;
     isError: boolean | null;
     message: string | null;
     responseException: string | null;
