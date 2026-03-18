@@ -1,10 +1,10 @@
 import axios from 'axios';
-import type { studentResponse, Student } from '../../types/Student';
+import type { StudentResponse, Student } from '../../types/Student';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-const requestData = async (student: Student): Promise<studentResponse> => {
+const requestData = async (student: Student): Promise<StudentResponse> => {
     const response = await axios.post(
-        'http://localhost:5212/api/students',
+        `${import.meta.env.VITE_API_URL}/students`,
         student,
     );
     console.log(response.data);

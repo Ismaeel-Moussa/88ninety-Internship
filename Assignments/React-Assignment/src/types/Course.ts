@@ -13,7 +13,7 @@ export interface GetCoursesResponse {
     version: string | null;
 }
 
-export interface courseResponse {
+export interface CourseResponse {
     statusCode: number | null;
     result: Course | null;
     isError: boolean | null;

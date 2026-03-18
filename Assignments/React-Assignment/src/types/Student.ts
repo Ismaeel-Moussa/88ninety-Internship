@@ -12,7 +12,7 @@ export interface GetStudentsResponse {
     responseException: string | null;
     version: string | null;
 }
-export interface studentResponse {
+export interface StudentResponse {
     statusCode: number | null;
     result: Student | null;
     isError: boolean | null;

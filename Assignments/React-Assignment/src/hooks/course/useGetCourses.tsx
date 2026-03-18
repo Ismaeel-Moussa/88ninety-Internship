@@ -4,7 +4,7 @@ import type { Course, GetCoursesResponse } from '../../types/Course';
 
 const fetchCourses = async (): Promise<Course[]> => {
     const result = await axios.get<GetCoursesResponse>(
-        'http://localhost:5212/api/courses',
+        `${import.meta.env.VITE_API_URL}/courses`,
     );
     console.log(result.data);
     return result.data.result;

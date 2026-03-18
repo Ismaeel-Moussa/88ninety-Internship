@@ -1,27 +1,27 @@
 import axios from 'axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import type { StudentResponse } from '../../types/Student';
+import type { CourseResponse } from '../../types/Course';
 
-const deleteStudent = async (id: number): Promise<StudentResponse> => {
+const deleteCourse = async (id: number): Promise<CourseResponse> => {
     const response = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/students/${id}`,
+        `${import.meta.env.VITE_API_URL}/Courses/${id}`,
     );
     console.log(response.data);
     return response.data;
 };
 
-const useDeleteStudent = () => {
+const useDeleteCourse = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: deleteStudent,
+        mutationFn: deleteCourse,
         onSettled: () => {
             queryClient.invalidateQueries({
-                queryKey: ['students'],
+                queryKey: ['Courses'],
                 exact: false,
             });
         },
     });
 };
 
-export default useDeleteStudent;
+export default useDeleteCourse;
