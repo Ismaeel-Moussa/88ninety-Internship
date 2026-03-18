@@ -7,9 +7,22 @@ import CourseFormModalContext from '../../contexts/CourseFormModalContext';
 import { useContext } from 'react';
 
 const CoursesList = () => {
-    const { data: CoursesData } = useGetCourses();
+    const { data: coursesData, isLoading, isError, error } = useGetCourses();
     const deleteCourse = useDeleteCourse();
     const { openAddModal, openEditModal } = useContext(CourseFormModalContext);
+
+    if (isLoading) {
+        return <div className="course-list-page">loading courses...</div>;
+    }
+
+    if (isError) {
+        return <div className="course-list-page">error: {error.message}</div>;
+    }
+
+    if (coursesData?.length === 0) {
+        return <div className="course-list-page">No courses found</div>;
+    }
+
     return (
         <>
             <div className="courses-list-page-header">
@@ -18,7 +31,7 @@ const CoursesList = () => {
             </div>
             <div className="page courses-list-page">
                 <ul className="course-list">
-                    {CoursesData?.map((s: Course) => (
+                    {coursesData?.map((s: Course) => (
                         <li key={s.id} className="course-list-item">
                             <Link
                                 to={`/Courses/${s.id}`}

@@ -7,9 +7,22 @@ import StudentFormModalContext from '../../contexts/StudentFormModalContext';
 import useDeleteStudent from '../../hooks/student/useDeleteStudent';
 
 const StudentsList = () => {
-    const { data: studentsData } = useGetStudents();
+    const { data: studentsData, isLoading, isError, error } = useGetStudents();
     const deleteStudent = useDeleteStudent();
     const { openAddModal, openEditModal } = useContext(StudentFormModalContext);
+
+    if (isLoading) {
+        return <div className="student-list-page">loading students...</div>;
+    }
+
+    if (isError) {
+        return <div className="student-list-page">error: {error.message}</div>;
+    }
+
+    if (studentsData?.length === 0) {
+        return <div className="student-list-page">No students found</div>;
+    }
+
     return (
         <>
             <div className="students-list-page-header">
