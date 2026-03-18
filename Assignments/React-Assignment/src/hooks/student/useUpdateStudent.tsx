@@ -18,6 +18,31 @@ const useUpdateStudent = () => {
 
     return useMutation({
         mutationFn: updateStudent,
+
+        onMutate: async (updatedStudent) => {
+            await queryClient.cancelQueries({ queryKey: ['students'] });
+            const previousStudents = queryClient.getQueryData<Student[]>([
+                'students',
+            ]);
+            queryClient.setQueryData<Student[]>(['students'], (currentData) =>
+                currentData
+                    ? currentData.map((s) =>
+                          s.id === updatedStudent.id ? updatedStudent : s,
+                      )
+                    : [updatedStudent],
+            );
+
+            return { previousStudents };
+        },
+
+        onError: (_err, _newStudent, context) => {
+            if (context?.previousStudents != null) {
+                queryClient.setQueryData(
+                    ['students'],
+                    context.previousStudents,
+                );
+            }
+        },
         onSettled: () => {
             queryClient.invalidateQueries({
                 queryKey: ['students'],
