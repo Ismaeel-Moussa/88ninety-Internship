@@ -4,7 +4,7 @@ import type { Student } from '../types/Student';
 export type StudentFormMode = 'add' | 'edit' | null;
 
 type StudentFormModalContextValue = {
-    mode: StudentFormMode;
+    studentFormMode: StudentFormMode;
     studentToEdit: Student | null;
     openAddModal: () => void;
     openEditModal: (student: Student) => void;
@@ -12,7 +12,7 @@ type StudentFormModalContextValue = {
 };
 
 const StudentFormModalContext = createContext<StudentFormModalContextValue>({
-    mode: null,
+    studentFormMode: null,
     studentToEdit: null,
     openAddModal: () => {},
     openEditModal: () => {},
@@ -24,28 +24,29 @@ export const StudentFormModalContextProvider = ({
 }: {
     children: React.ReactNode;
 }) => {
-    const [mode, setMode] = useState<StudentFormMode>(null);
+    const [studentFormMode, setStudentFormMode] =
+        useState<StudentFormMode>(null);
     const [studentToEdit, setStudentToEdit] = useState<Student | null>(null);
 
     const openAddModal = () => {
         setStudentToEdit(null);
-        setMode('add');
+        setStudentFormMode('add');
     };
 
     const openEditModal = (student: Student) => {
         setStudentToEdit(student);
-        setMode('edit');
+        setStudentFormMode('edit');
     };
 
     const closeModal = () => {
-        setMode(null);
+        setStudentFormMode(null);
         setStudentToEdit(null);
     };
 
     return (
         <StudentFormModalContext.Provider
             value={{
-                mode,
+                studentFormMode,
                 studentToEdit,
                 openAddModal,
                 openEditModal,

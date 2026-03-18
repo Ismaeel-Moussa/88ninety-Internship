@@ -97,3 +97,23 @@
         border-color: #e74c3c;
     }
 }
+.courses-list-page-header {
+    display: flex;
+    justify-content: space-between;
+}
+.courses-list-page-header button {
+    background-color: rgba(212, 210, 210, 0.709);
+    border-radius: 6px;
+    font-weight: bold;
+    margin-right: 10rem;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    color: black;
+    cursor: pointer;
+    border: solid 1px transparent;
+    transition: all 0.2s;
+}
+.courses-list-page-header button:hover {
+    background-color: #4c3232f7;
+    color: white;
+}

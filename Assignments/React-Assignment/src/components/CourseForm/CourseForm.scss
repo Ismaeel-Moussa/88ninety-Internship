@@ -1,0 +1,126 @@
+/*Addcourse.scss*/
+
+.course-form-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+    animation: courseFormOverlayIn 0.2s ease-out;
+}
+
+@keyframes courseFormOverlayIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.course-form-modal {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 420px;
+    overflow: hidden;
+}
+
+.course-form-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #eee;
+    background: #fafafa;
+}
+
+.course-form-modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.course-form-modal-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #666;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 6px;
+    transition:
+        background 0.2s,
+        color 0.2s;
+}
+
+.course-form-modal-close:hover {
+    background: #eee;
+    color: #1a1a1a;
+}
+
+.course-form-form {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.course-form-input {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.course-form-input:focus {
+    outline: none;
+    border-color: #2c3e50;
+    box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.15);
+}
+
+.course-form-input::placeholder {
+    color: #999;
+}
+
+.course-form-submit {
+    margin-top: 0.25rem;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: #2c3e50;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition:
+        background 0.2s,
+        transform 0.1s;
+}
+
+.course-form-submit:hover:not(:disabled) {
+    background: #1a252f;
+}
+
+.course-form-submit:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.course-form-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}

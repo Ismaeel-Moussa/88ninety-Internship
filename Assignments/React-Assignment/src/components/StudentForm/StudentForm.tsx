@@ -5,14 +5,14 @@ import StudentFormModalContext from '../../contexts/StudentFormModalContext';
 import useAddStudent from '../../hooks/student/useAddStudent';
 import useUpdateStudent from '../../hooks/student/useUpdateStudent';
 const StudentForm = () => {
-    const { closeModal, mode, studentToEdit } = useContext(
+    const { closeModal, studentFormMode, studentToEdit } = useContext(
         StudentFormModalContext,
     );
     const addStudent = useAddStudent();
     const updateStudent = useUpdateStudent();
     const nameRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
-    const isEdit = mode === 'edit';
+    const isEdit = studentFormMode === 'edit';
 
     useEffect(() => {
         if (!isEdit || !studentToEdit) return;
@@ -42,7 +42,7 @@ const StudentForm = () => {
         }
     };
 
-    if (mode == null) return null;
+    if (studentFormMode == null) return null;
 
     const title = isEdit ? 'Edit Student' : 'Add Student';
     const submitLabel = isEdit
@@ -92,7 +92,7 @@ const StudentForm = () => {
                 </form>
             </div>
         </div>,
-        document.getElementById('root-modal') as HTMLElement,
+        document.getElementById('root-student-modal') as HTMLElement,
     );
 };
 export default StudentForm;

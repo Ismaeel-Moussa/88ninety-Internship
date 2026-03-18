@@ -17,7 +17,7 @@ const useDeleteCourse = () => {
         mutationFn: deleteCourse,
         onSettled: () => {
             queryClient.invalidateQueries({
-                queryKey: ['Courses'],
+                queryKey: ['courses'],
                 exact: false,
             });
         },

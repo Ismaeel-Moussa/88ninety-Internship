@@ -18,11 +18,11 @@ const useAddCourse = () => {
         mutationFn: requestData,
 
         onMutate: async (newCourse) => {
-            await queryClient.cancelQueries({ queryKey: ['Courses'] });
+            await queryClient.cancelQueries({ queryKey: ['courses'] });
             const previousCourses = queryClient.getQueryData<Course[]>([
-                'Courses',
+                'courses',
             ]);
-            queryClient.setQueryData<Course[]>(['Courses'], (currentData) =>
+            queryClient.setQueryData<Course[]>(['courses'], (currentData) =>
                 currentData ? [...currentData, newCourse] : [newCourse],
             );
 
@@ -31,13 +31,13 @@ const useAddCourse = () => {
 
         onError: (_err, _newCourse, context) => {
             if (context?.previousCourses != null) {
-                queryClient.setQueryData(['Courses'], context.previousCourses);
+                queryClient.setQueryData(['courses'], context.previousCourses);
             }
         },
 
         onSettled: () => {
             queryClient.invalidateQueries({
-                queryKey: ['Courses'],
+                queryKey: ['courses'],
                 exact: false,
             });
         },

@@ -7,9 +7,12 @@ import HomePage from './pages/HomePage/HomePage';
 import StudentForm from './components/StudentForm/StudentForm';
 import { useContext } from 'react';
 import StudentFormModalContext from './contexts/StudentFormModalContext';
+import CourseFormModalContext from './contexts/CourseFormModalContext';
+import CourseForm from './components/CourseForm/CourseForm';
 
 function App() {
-    const { mode } = useContext(StudentFormModalContext);
+    const { studentFormMode } = useContext(StudentFormModalContext);
+    const { courseFormMode } = useContext(CourseFormModalContext);
 
     return (
         <BrowserRouter>
@@ -21,7 +24,8 @@ function App() {
                     <Route path="/courses" element={<CoursesList />} />
                 </Routes>
             </main>
-            {mode != null && <StudentForm />}
+            {studentFormMode != null && <StudentForm />}
+            {courseFormMode != null && <CourseForm />}
         </BrowserRouter>
     );
 }

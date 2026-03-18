@@ -1,7 +1,7 @@
 export interface Course {
     id?: number;
     name: string;
-    credit: number;
+    credit: string;
 }
 
 export interface GetCoursesResponse {
