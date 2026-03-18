@@ -56,47 +56,6 @@
     gap: 0.5rem;
 }
 
-.course-list-edit-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #2980b9;
-    background: #fff;
-    border: 1px solid #3498db;
-    border-radius: 8px;
-    cursor: pointer;
-    transition:
-        background 0.2s,
-        color 0.2s,
-        border-color 0.2s;
-
-    &:hover {
-        background: #3498db;
-        color: #fff;
-        border-color: #3498db;
-    }
-}
-
-.course-list-delete-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #c0392b;
-    background: #fff;
-    border: 1px solid #e74c3c;
-    border-radius: 8px;
-    cursor: pointer;
-    transition:
-        background 0.2s,
-        color 0.2s,
-        border-color 0.2s;
-
-    &:hover {
-        background: #e74c3c;
-        color: #fff;
-        border-color: #e74c3c;
-    }
-}
 .courses-list-page-header {
     display: flex;
     justify-content: space-between;

@@ -5,6 +5,7 @@ import type { Student } from '../../types/Student';
 import { useContext } from 'react';
 import StudentFormModalContext from '../../contexts/StudentFormModalContext';
 import useDeleteStudent from '../../hooks/student/useDeleteStudent';
+import Button from '../../components/Shared/Button';
 
 const StudentsList = () => {
     const { data: studentsData, isLoading, isError, error } = useGetStudents();
@@ -41,29 +42,27 @@ const StudentsList = () => {
                                 <span className="student-email">{s.email}</span>
                             </Link>
                             <div className="student-list-actions">
-                                <button
-                                    type="button"
-                                    className="student-list-edit-btn"
+                                <Button
+                                    type="edit"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         openEditModal(s);
                                     }}
-                                >
-                                    Edit
-                                </button>
-                                <button
-                                    type="button"
-                                    className="student-list-delete-btn"
+                                    label="Edit"
+                                />
+                                <Button
+                                    type="delete"
                                     onClick={() =>
                                         s.id != null &&
                                         deleteStudent.mutate(s.id)
                                     }
+                                    label={
+                                        deleteStudent.isPending
+                                            ? 'Deleting...'
+                                            : 'Delete'
+                                    }
                                     disabled={deleteStudent.isPending}
-                                >
-                                    {deleteStudent.isPending
-                                        ? 'Deleting...'
-                                        : 'Delete'}
-                                </button>
+                                />
                             </div>
                         </li>
                     ))}

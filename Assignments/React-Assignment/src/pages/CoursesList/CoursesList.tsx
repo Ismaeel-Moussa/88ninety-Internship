@@ -5,6 +5,7 @@ import useDeleteCourse from '../../hooks/course/useDeleteCourse';
 import type { Course } from '../../types/Course';
 import CourseFormModalContext from '../../contexts/CourseFormModalContext';
 import { useContext } from 'react';
+import Button from '../../components/Shared/Button';
 
 const CoursesList = () => {
     const { data: coursesData, isLoading, isError, error } = useGetCourses();
@@ -31,41 +32,39 @@ const CoursesList = () => {
             </div>
             <div className="page courses-list-page">
                 <ul className="course-list">
-                    {coursesData?.map((s: Course) => (
-                        <li key={s.id} className="course-list-item">
+                    {coursesData?.map((c: Course) => (
+                        <li key={c.id} className="course-list-item">
                             <Link
-                                to={`/Courses/${s.id}`}
+                                to={`/Courses/${c.id}`}
                                 className="course-link"
                             >
-                                <span className="course-name">{s.name}</span>
+                                <span className="course-name">{c.name}</span>
                                 <span className="course-credit">
-                                    Credit: {s.credit}
+                                    Credit: {c.credit}
                                 </span>
                             </Link>
                             <div className="course-list-actions">
-                                <button
-                                    type="button"
-                                    className="course-list-edit-btn"
+                                <Button
+                                    type="edit"
                                     onClick={(e) => {
                                         e.preventDefault();
-                                        openEditModal(s);
+                                        openEditModal(c);
                                     }}
-                                >
-                                    Edit
-                                </button>
-                                <button
-                                    type="button"
-                                    className="course-list-delete-btn"
+                                    label="Edit"
+                                />
+                                <Button
+                                    type="delete"
                                     onClick={() =>
-                                        s.id != null &&
-                                        deleteCourse.mutate(s.id)
+                                        c.id != null &&
+                                        deleteCourse.mutate(c.id)
+                                    }
+                                    label={
+                                        deleteCourse.isPending
+                                            ? 'Deleting...'
+                                            : 'Delete'
                                     }
                                     disabled={deleteCourse.isPending}
-                                >
-                                    {deleteCourse.isPending
-                                        ? 'Deleting...'
-                                        : 'Delete'}
-                                </button>
+                                />
                             </div>
                         </li>
                     ))}
