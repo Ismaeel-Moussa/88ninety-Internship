@@ -9,6 +9,8 @@ import { useContext } from 'react';
 import StudentFormModalContext from './contexts/StudentFormModalContext';
 import CourseFormModalContext from './contexts/CourseFormModalContext';
 import CourseForm from './components/CourseForm/CourseForm';
+import StudentDetail from './pages/StudentDetail/StudentDetail';
+import CourseDetail from './pages/CourseDetail/CourseDetail';
 
 function App() {
     const { studentFormMode } = useContext(StudentFormModalContext);
@@ -21,7 +23,9 @@ function App() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/students" element={<StudentsList />} />
+                    <Route path="/students/:id" element={<StudentDetail />} />
                     <Route path="/courses" element={<CoursesList />} />
+                    <Route path="/courses/:id" element={<CourseDetail />} />
                 </Routes>
             </main>
             {studentFormMode != null && <StudentForm />}

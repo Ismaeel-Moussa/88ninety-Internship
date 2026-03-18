@@ -1,0 +1,55 @@
+.course-detail-page .back-link {
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    color: #3498db;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.course-detail-page .back-link:hover {
+    color: #2980b9;
+}
+
+.detail-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.75rem;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.detail-name {
+    margin: 0 0 1.25rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-fields {
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.detail-fields dt {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.detail-fields dd {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: #1a1a1a;
+}
+
+.not-found-message {
+    margin: 0 0 1rem;
+    color: #7f8c8d;
+}

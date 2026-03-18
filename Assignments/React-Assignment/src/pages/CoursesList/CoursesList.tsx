@@ -39,7 +39,7 @@ const CoursesList = () => {
                             >
                                 <span className="course-name">{s.name}</span>
                                 <span className="course-credit">
-                                    {s.credit}
+                                    Credit: {s.credit}
                                 </span>
                             </Link>
                             <div className="course-list-actions">
