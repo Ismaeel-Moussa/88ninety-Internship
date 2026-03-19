@@ -1,5 +1,5 @@
 import type { MouseEventHandler } from 'react';
-import './Button.scss';
+import './ActionButton.scss';
 
 type Props = {
     type: string;
@@ -7,7 +7,7 @@ type Props = {
     label: string;
     disabled?: boolean;
 };
-const Button = ({ type, onClick, label, disabled }: Props) => {
+const ActionButton = ({ type, onClick, label, disabled }: Props) => {
     return (
         <button
             type="button"
@@ -19,4 +19,4 @@ const Button = ({ type, onClick, label, disabled }: Props) => {
         </button>
     );
 };
-export default Button;
+export default ActionButton;

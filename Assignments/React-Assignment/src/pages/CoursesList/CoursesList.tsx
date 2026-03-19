@@ -5,7 +5,7 @@ import useDeleteCourse from '../../hooks/course/useDeleteCourse';
 import type { Course } from '../../types/Course';
 import CourseFormModalContext from '../../contexts/CourseFormModalContext';
 import { useContext } from 'react';
-import Button from '../../components/Shared/Button';
+import ActionButton from '../../components/Shared/ActionButton/ActionButton';
 
 const CoursesList = () => {
     const { data: coursesData, isLoading, isError, error } = useGetCourses();
@@ -44,7 +44,7 @@ const CoursesList = () => {
                                 </span>
                             </Link>
                             <div className="course-list-actions">
-                                <Button
+                                <ActionButton
                                     type="edit"
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -52,7 +52,7 @@ const CoursesList = () => {
                                     }}
                                     label="Edit"
                                 />
-                                <Button
+                                <ActionButton
                                     type="delete"
                                     onClick={() =>
                                         c.id != null &&

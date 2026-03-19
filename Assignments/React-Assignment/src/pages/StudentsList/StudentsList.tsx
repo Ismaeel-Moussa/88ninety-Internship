@@ -5,7 +5,7 @@ import type { Student } from '../../types/Student';
 import { useContext } from 'react';
 import StudentFormModalContext from '../../contexts/StudentFormModalContext';
 import useDeleteStudent from '../../hooks/student/useDeleteStudent';
-import Button from '../../components/Shared/Button';
+import ActionButton from '../../components/Shared/ActionButton/ActionButton';
 
 const StudentsList = () => {
     const { data: studentsData, isLoading, isError, error } = useGetStudents();
@@ -42,7 +42,7 @@ const StudentsList = () => {
                                 <span className="student-email">{s.email}</span>
                             </Link>
                             <div className="student-list-actions">
-                                <Button
+                                <ActionButton
                                     type="edit"
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -50,7 +50,7 @@ const StudentsList = () => {
                                     }}
                                     label="Edit"
                                 />
-                                <Button
+                                <ActionButton
                                     type="delete"
                                     onClick={() =>
                                         s.id != null &&
