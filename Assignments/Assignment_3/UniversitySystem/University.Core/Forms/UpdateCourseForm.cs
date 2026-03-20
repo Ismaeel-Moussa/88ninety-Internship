@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace University.Core.Forms
 {
-    public class AddStudentForm
+    public class UpdateCourseForm
     {
         [Required]
         public string Name { get; set; }
          
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Range(1, 10)]
+        public byte Credit { get; set; }
 
 
     }

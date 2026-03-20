@@ -9,29 +9,29 @@ namespace University.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentsController(IStudentService studentService, ILogger<StudentsController> logger) : ControllerBase
+    public class CoursesController(ICourseService courseService, ILogger<CoursesController> logger) : ControllerBase
     {
-        private readonly IStudentService _studentService = studentService;
-        private readonly ILogger<StudentsController> _logger = logger;
+        private readonly ICourseService _courseService = courseService;
+        private readonly ILogger<CoursesController> _logger = logger;
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<StudentDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<CourseDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public List<StudentDTO> GetAll()
-        {       
-            _logger.LogInformation("Getting all students");
-            return _studentService.GetAll();
+        public List<CourseDTO> GetAll()
+        {
+            _logger.LogInformation("Getting all courses");
+            return _courseService.GetAll();
         }
 
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(StudentDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CourseDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public StudentDTO GetById(int id)
+        public CourseDTO GetById(int id)
         {
-            _logger.LogInformation("Getting student with id {StudentId}", id);
-            return _studentService.GetById(id);
+            _logger.LogInformation("Getting course with id {CourseId}", id);
+            return _courseService.GetById(id);
         }
 
 
@@ -39,10 +39,10 @@ namespace University.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public void Create([FromBody] AddStudentForm form)
+        public void Create([FromBody] AddCourseForm form)
         {
-            _logger.LogInformation("Creating a new student with name {StudentName}", form.Name);
-            _studentService.Create(form);
+            _logger.LogInformation("Creating a new course with name {CourseName}", form.Name);
+            _courseService.Create(form);
         }
 
         [HttpPut("{id}")]
@@ -50,10 +50,10 @@ namespace University.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public void Update(int id, [FromBody] UpdateStudentForm form)
+        public void Update(int id, [FromBody] UpdateCourseForm form)
         {
-            _logger.LogInformation("Updating student with id {StudentId}", id);
-            _studentService.Update(id, form);
+            _logger.LogInformation("Updating course with id {CourseId}", id);
+            _courseService.Update(id, form);
         }
 
         [HttpDelete("{id}")]
@@ -62,8 +62,8 @@ namespace University.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public void Delete(int id)
         {
-            _logger.LogInformation("Deleting student with id {StudentId}", id);
-            _studentService.Delete(id);
+            _logger.LogInformation("Deleting course with id {CourseId}", id);
+            _courseService.Delete(id);
         }
     }
 }

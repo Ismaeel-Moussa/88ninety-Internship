@@ -7,10 +7,12 @@ namespace University.Data.AppDbContext
     public class UniversityDbContext(DbContextOptions<UniversityDbContext> options) : DbContext(options)
     {
         public DbSet<Student> Students { get; set; }
+        public DbSet<Course> Courses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new StudentMapping());
+            modelBuilder.ApplyConfiguration(new CourseMapping());
 
             modelBuilder.Entity<Student>().HasData(new List<Student>
             {
@@ -23,7 +25,18 @@ namespace University.Data.AppDbContext
                 
             });
 
-       
+            modelBuilder.Entity<Course>().HasData(new List<Course>
+            {
+                new() { Id = 1, Name = "Mathematics" , Credit = 7 },
+                new() { Id = 2, Name = "Physics" , Credit = 5 },
+                new() { Id = 3, Name = "Chemistry" , Credit = 5 },
+                new() { Id = 4, Name = "Biology" ,  Credit = 5},
+                new() { Id = 5, Name = "Computer Science" , Credit = 5 },
+                new() { Id = 6, Name = "English" ,  Credit = 3 }
+
+            });
+
+
         }
     }
 }
