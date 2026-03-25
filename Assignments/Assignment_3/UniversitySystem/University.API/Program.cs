@@ -6,7 +6,7 @@ using University.API.Autofac;
 using University.API.Filters;
 using University.Data.AppDbContext;
 using University.Data.Autofac;
-using AutoWrapper;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,15 +39,28 @@ builder.Host.ConfigureContainer<ContainerBuilder>(container =>
     container.RegisterModule<ControllersModule>();
 });
 
+// Add cors
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
+
 var app = builder.Build();
 
-app.UseApiResponseAndExceptionWrapper();
+app.UseCors();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 app.UseHttpsRedirection();
 app.UseAuthorization(); 
 app.MapControllers();

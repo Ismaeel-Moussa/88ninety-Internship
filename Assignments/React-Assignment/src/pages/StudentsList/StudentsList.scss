@@ -1,0 +1,78 @@
+/* Students list */
+.students-list-page .student-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.student-list-item {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.student-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    padding: 1rem 1.25rem;
+    background: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #e0e0e0;
+    transition:
+        box-shadow 0.2s,
+        border-color 0.2s;
+}
+
+.student-link:hover {
+    border-color: #3498db;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+}
+
+.student-name {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.student-email {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    padding: 0.25rem 0.6rem;
+    background: #ecf0f1;
+    border-radius: 6px;
+}
+
+.student-list-actions {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.students-list-page-header {
+    display: flex;
+    justify-content: space-between;
+}
+.students-list-page-header button {
+    background-color: rgba(212, 210, 210, 0.709);
+    border-radius: 6px;
+    margin-right: 10rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    color: black;
+    cursor: pointer;
+    border: solid 1px transparent;
+    transition: all 0.2s;
+}
+.students-list-page-header button:hover {
+    background-color: #4c3232f7;
+    color: white;
+}

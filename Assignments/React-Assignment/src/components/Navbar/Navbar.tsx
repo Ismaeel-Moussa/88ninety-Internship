@@ -1,0 +1,41 @@
+import { NavLink } from 'react-router-dom';
+import logo from '../../assets/altinbas-logo.png';
+import './Navbar.scss';
+
+const Navbar = () => {
+    return (
+        <nav className="nav">
+            <div className="nav-logo-container">
+                <img className="nav-logo" src={logo} alt="logo" />
+                <span className="nav-brand">University System</span>
+            </div>
+            <div className="nav-links">
+                <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                        isActive ? 'nav-link active' : 'nav-link'
+                    }
+                >
+                    Home
+                </NavLink>
+                <NavLink
+                    to="/students"
+                    className={({ isActive }) =>
+                        isActive ? 'nav-link active' : 'nav-link'
+                    }
+                >
+                    Students
+                </NavLink>
+                <NavLink
+                    to="/courses"
+                    className={({ isActive }) =>
+                        isActive ? 'nav-link active' : 'nav-link'
+                    }
+                >
+                    Courses
+                </NavLink>
+            </div>
+        </nav>
+    );
+};
+export default Navbar;
